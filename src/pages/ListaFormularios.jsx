@@ -17,7 +17,7 @@ function ListaFormularios({ token }) {
 
   const carregarFormularios = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/formularios', {
+      const response = await fetch('http://localhost:50000/rhp', {
         headers: {
           'token': token,
         },

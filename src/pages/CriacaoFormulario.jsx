@@ -23,7 +23,7 @@ function CriacaoFormulario({ token }) {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:8080/api/formularios', {
+      const response = await fetch('http://localhost:50000/rhp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
