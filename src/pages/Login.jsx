@@ -1,79 +1,81 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../App'
 
-function Login({ onLogin }) {
+const API_BASE = 'http://localhost:50000'
+
+function Login() {
   const [usuario, setUsuario] = useState('')
   const [senha, setSenha] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:50000/auth/login', {
+      const response = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ usuario, senha }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario, senha })
       })
 
-      const data = await response.json()
-      
-      if (response.ok) {
-        onLogin(data.token)
-      } else {
-        alert('Erro ao fazer login')
+      if (!response.ok) {
+        throw new Error('Credenciais inválidas')
       }
-    } catch (error) {
-      alert('Erro de conexão')
+
+      const data = await response.json()
+      login(data.token, data.funcao)
+      navigate('/')
+    } catch (err) {
+      setError(err.message || 'Erro ao fazer login')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-2xl w-96">
-        <h1 className="text-3xl font-bold text-red-700 text-center mb-2">
-          FAJ BIO
-        </h1>
-        <h2 className="text-xl text-gray-600 text-center mb-6">
-          Sistema de Qualidade
-        </h2>
-
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Usuário</label>
-            <input
-              type="text"
-              value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-500"
-              required
-            />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-gray-700 mb-2">Senha</label>
-            <input
-              type="password"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-500"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-red-700 hover:bg-red-800 text-white py-2 rounded font-semibold disabled:bg-gray-400"
-          >
-            {loading ? 'Entrando...' : 'Entrar'}
-          </button>
-        </form>
+    <div className="login-page">
+      <div className="login-logo">
+        <span>Q</span>
       </div>
+      <h1 className="login-title">Qualidade FAJ Bio</h1>
+      <p className="login-subtitle">Sistema de Controle de Qualidade</p>
+
+      <form className="login-form" onSubmit={handleSubmit}>
+        {error && <div className="error-msg">{error}</div>}
+        
+        <div className="input-group">
+          <label>Usuário</label>
+          <input
+            type="text"
+            placeholder="Digite seu usuário"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Senha</label>
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn-primary" disabled={loading}>
+          {loading ? 'Entrando...' : 'Entrar'}
+        </button>
+      </form>
     </div>
   )
 }

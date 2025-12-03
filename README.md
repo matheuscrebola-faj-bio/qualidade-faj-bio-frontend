@@ -1,56 +1,16 @@
-# FAJ BIO - Sistema de Qualidade
+# React + Vite
 
-Sistema de controle de qualidade desenvolvido em React + Vite.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Instalação
+Currently, two official plugins are available:
 
-```bash
-npm install
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Executar
+## React Compiler
 
-```bash
-npm run dev
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Estrutura
+## Expanding the ESLint configuration
 
-```
-src/
-├── App.jsx                 # Componente principal
-├── main.jsx               # Entry point
-├── index.css              # Estilos globais
-├── pages/
-│   ├── Login.jsx          # Tela de login
-│   ├── CriacaoFormulario.jsx  # Criar formulário
-│   └── ListaFormularios.jsx   # Lista de formulários
-└── components/
-    └── modais/
-        ├── ModalAcompanhantes.jsx
-        ├── ModalRastreabilidade.jsx
-        ├── ModalMontagem.jsx
-        ├── ModalBurnIn.jsx
-        └── ModalChecklist.jsx
-```
-
-## Endpoints
-
-- **Login:** `POST /api/login`
-- **Criar Formulário:** `POST /api/formularios`
-- **Listar Formulários:** `GET /api/formularios`
-- **Atualizar Etapas:** `PUT /api/formularios/{formId}/{etapa}`
-
-## Modais Implementados
-
-- Acompanhantes
-- Rastreabilidade
-- Montagem
-- Burn In
-- Checklist
-
-## Observações
-
-- Adicione os demais modais seguindo o padrão dos exemplos
-- Configure o backend URL em cada arquivo conforme necessário
-- O sistema usa padrão de cor vermelha como tema principal
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
