@@ -27,7 +27,7 @@ function ModalChecklist({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/checklist`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'token': `${token}`

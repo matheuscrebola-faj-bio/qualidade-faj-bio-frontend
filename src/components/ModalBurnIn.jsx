@@ -24,7 +24,7 @@ function ModalBurnIn({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/burn-in`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'token': `${token}`

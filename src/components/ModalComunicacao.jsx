@@ -22,7 +22,7 @@ function ModalComunicacao({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/comunicacao`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'token': `${token}`
