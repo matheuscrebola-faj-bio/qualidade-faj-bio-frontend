@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8080'
+const API_BASE = 'http://localhost:50000'
 
 function ModalRastreabilidade({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    lote: '',
-    validade: '',
-    fornecedor: '',
-    observacoes: ''
+    placa: '',
+    placaVer: '',
+    midia: '',
+    midiaVer: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -22,10 +22,10 @@ function ModalRastreabilidade({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/rastreabilidade`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'token': `${token}`
         },
         body: JSON.stringify(form)
       })
@@ -55,47 +55,49 @@ function ModalRastreabilidade({ rhp, onClose, token }) {
             <div className="modal-form">
               <div className="form-row">
                 <div className="form-field">
-                  <label>Lote</label>
+                  <label>Placa ECG</label>
                   <input
                     type="text"
-                    name="lote"
-                    value={form.lote}
+                    name="placa"
+                    value={form.placa}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div className="form-field">
-                  <label>Validade</label>
+                  <label>Placa ECG - Software</label>
                   <input
-                    type="date"
-                    name="validade"
-                    value={form.validade}
+                    type="text"
+                    name="placaVer"
+                    value={form.placaVer}
                     onChange={handleChange}
                     required
                   />
                 </div>
-              </div>
 
-              <div className="form-field">
-                <label>Fornecedor</label>
-                <input
-                  type="text"
-                  name="fornecedor"
-                  value={form.fornecedor}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+                <div className="form-field">
+                  <label>Mídia de Instalação</label>
+                  <input
+                    type="text"
+                    name="midia"
+                    value={form.midia}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
-              </div>
+                <div className="form-field">
+                  <label>Mídia de Instalação - Software</label>
+                  <input
+                    type="text"
+                    name="midiaVer"
+                    value={form.midiaVer}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>              
             </div>
           </div>
 
