@@ -8,7 +8,7 @@ function ModalCriar({ onClose, token }) {
     op: '',
     data: '',
     serie: '',
-    quantidade: 1
+    qntd: 1
   })
   const [loading, setLoading] = useState(false)
 
