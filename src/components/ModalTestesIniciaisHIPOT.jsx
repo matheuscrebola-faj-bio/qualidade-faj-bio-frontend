@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const API_BASE = 'http://localhost:50000'
 
-function ModalTestesIniciais({ rhp, onClose, token }) {
+function ModalTestesIniciaisHIPOT({ rhp, onClose, token }) {
   const [form, setForm] = useState({
     validadeHipot: '',
     dispositivoHipot: 'APROVADO',
@@ -120,4 +120,4 @@ function ModalTestesIniciais({ rhp, onClose, token }) {
   )
 }
 
-export default ModalTestesIniciais
+export default ModalTestesIniciaisHIPOT

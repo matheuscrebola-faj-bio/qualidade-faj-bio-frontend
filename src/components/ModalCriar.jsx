@@ -8,7 +8,7 @@ function ModalCriar({ onClose, token }) {
     op: '',
     data: '',
     serie: '',
-    qntd: 1
+    qntd: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -104,9 +104,9 @@ function ModalCriar({ onClose, token }) {
                 <label>Quantidade</label>
                 <input
                   type="number"
-                  name="quantidade"
+                  name="qntd"
                   min="1"
-                  value={form.quantidade}
+                  value={form.qntd}
                   onChange={handleChange}
                   required
                 />

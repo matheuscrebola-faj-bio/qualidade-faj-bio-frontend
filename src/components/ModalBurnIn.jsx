@@ -52,10 +52,11 @@ function ModalBurnIn({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+              
               <div className="form-field">
                   <label>Data Início</label>
                   <input
-                    type="datetime-local"
+                    type="date-local"
                     name="dtInicio"
                     value={form.dtInicio}
                     onChange={handleChange}
@@ -65,7 +66,7 @@ function ModalBurnIn({ rhp, onClose, token }) {
               <div className="form-field">
                   <label>Data Fim</label>
                   <input
-                    type="datetime-local"
+                    type="date-local"
                     name="dtMont"
                     value={form.dtMont}
                     onChange={handleChange}
@@ -73,7 +74,7 @@ function ModalBurnIn({ rhp, onClose, token }) {
                   />
                 </div>
                 <div className="form-field">
-                  <label>Data Montagem</label>
+                  <label>Temperatura</label>
                   <input
                     type="text"
                     name="temperatura"

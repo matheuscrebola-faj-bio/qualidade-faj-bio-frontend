@@ -23,7 +23,7 @@ function ModalTestesFinais({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-finais`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'token': `${token}`

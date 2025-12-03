@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const API_BASE = 'http://localhost:50000'
 
-function ModalTestesIniciais({ rhp, onClose, token }) {
+function ModalTestesIniciaisFuga({ rhp, onClose, token }) {
   const [form, setForm] = useState({
     msgTestPassed: '',
     imprimir: '',
@@ -106,4 +106,4 @@ function ModalTestesIniciais({ rhp, onClose, token }) {
   )
 }
 
-export default ModalTestesIniciais
+export default ModalTestesIniciaisFuga
