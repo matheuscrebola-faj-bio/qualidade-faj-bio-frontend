@@ -2,11 +2,9 @@ import { useState } from 'react'
 
 const API_BASE = 'http://localhost:50000'
 
-function ModalFinalizado({ rhp, onClose, token }) {
+function ModalTestesIniciais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    responsavel: '',
-    dataFinalizacao: '',
-    observacoes: ''
+    msgPass: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -20,7 +18,7 @@ function ModalFinalizado({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/finalizado`, {
+      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/rigidez-dieletrica`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -45,49 +43,33 @@ function ModalFinalizado({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Finalizado - Eletro System</h2>
+          <h2>2.2 - Testes Iniciais - Rigidez Dielétrica</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+              
               <div className="form-field">
-                <label>Responsável</label>
-                <input
-                  type="text"
-                  name="responsavel"
-                  value={form.responsavel}
+                <label>Verificar Mensagem "Pass"</label>
+                <select
+                  name="msgPass"
+                  value={form.msgPass}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
-              <div className="form-field">
-                <label>Data de Finalização</label>
-                <input
-                  type="datetime-local"
-                  name="dataFinalizacao"
-                  value={form.dataFinalizacao}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Observações Finais</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
-              </div>
             </div>
           </div>
 
           <div className="modal-footer">
             <button type="submit" className="btn-submit" disabled={loading}>
-              {loading ? 'Finalizando...' : 'Finalizar RHP'}
+              {loading ? 'Salvando...' : 'Salvar'}
             </button>
           </div>
         </form>
@@ -96,4 +78,4 @@ function ModalFinalizado({ rhp, onClose, token }) {
   )
 }
 
-export default ModalFinalizado
+export default ModalTestesIniciais

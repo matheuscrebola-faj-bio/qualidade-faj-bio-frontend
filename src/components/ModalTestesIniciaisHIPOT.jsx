@@ -2,11 +2,12 @@ import { useState } from 'react'
 
 const API_BASE = 'http://localhost:50000'
 
-function ModalInspecao({ rhp, onClose, token }) {
+function ModalTestesIniciais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    embalagem: '',
-    rotulagem: '',
-    et04: ''
+    validadeHipot: '',
+    dispositivoHipot: 'APROVADO',
+    parametros: '',
+    alarme: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -20,7 +21,7 @@ function ModalInspecao({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/inspecao`, {
+      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/hipot`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ function ModalInspecao({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Inspeção - Eletro System</h2>
+          <h2>2.1 - Testes Iniciais - Pré Teste HIPOT</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
@@ -54,10 +55,10 @@ function ModalInspecao({ rhp, onClose, token }) {
             <div className="modal-form">
               
               <div className="form-field">
-                <label>Embalagem Lacrada</label>
+                <label>Verificar Validade de Calibração</label>
                 <select
-                  name="embalagem"
-                  value={form.embalagem}
+                  name="validadeHipot"
+                  value={form.validadeHipot}
                   onChange={handleChange}
                   required
                 >
@@ -67,10 +68,10 @@ function ModalInspecao({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Conferir Rotulagem</label>
+                <label>Barramento do Cabo</label>
                 <select
-                  name="rotulagem"
-                  value={form.rotulagem}
+                  name="dispositivoHipot"
+                  value={form.dispositivoHipot}
                   onChange={handleChange}
                   required
                 >
@@ -80,10 +81,23 @@ function ModalInspecao({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Conferir ET-04</label>
+                <label>Verificar Parâmetros do HIPOT</label>
                 <select
-                  name="et04"
-                  value={form.et04}
+                  name="parametros"
+                  value={form.parametros}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>Verificar Mensagem</label>
+                <select
+                  name="alarme"
+                  value={form.alarme}
                   onChange={handleChange}
                   required
                 >
@@ -106,4 +120,4 @@ function ModalInspecao({ rhp, onClose, token }) {
   )
 }
 
-export default ModalInspecao
+export default ModalTestesIniciais

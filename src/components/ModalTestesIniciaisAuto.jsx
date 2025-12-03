@@ -2,26 +2,24 @@ import { useState } from 'react'
 
 const API_BASE = 'http://localhost:50000'
 
-function ModalChecklist({ rhp, onClose, token }) {
+function ModalTestesIniciais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    rotulagem: '',
-    et17: '',
-    et21: '',
-    acessorios: '',
-    rabichos: '',
-    estado: '',
-    certificado: '',
-    et18: '',
-    observacoes: ''
+    validadeFuga: '',
+    dispositivoGiga: '',
+    dispositivoPlaca: '',
+    parametrosFuga: '',
+    autoCalibracao: '',
+    testPassed: '',
+    imprimir1: '',
+    tensaoGiga: '',
+    testFailed: '',
+    imprimir2: ''
   })
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setForm(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
-    }))
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e) => {
@@ -29,7 +27,7 @@ function ModalChecklist({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/checklist`, {
+      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/corrente-fuga-auto`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +52,7 @@ function ModalChecklist({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Checklist - Eletro System</h2>
+          <h2>2.3 - Testes Iniciais - Ensaio de Corrente</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
@@ -63,10 +61,10 @@ function ModalChecklist({ rhp, onClose, token }) {
             <div className="modal-form">
 
               <div className="form-field">
-                <label>Presença da Rotulagem</label>
+                <label>Validade da Calibração QA-90</label>
                 <select
-                  name="rotulagem"
-                  value={form.rotulagem}
+                  name="validadeFuga"
+                  value={form.validadeFuga}
                   onChange={handleChange}
                   required
                 >
@@ -76,10 +74,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>ET-17 Etiqueta Lacre Validade</label>
+                <label>Dispositivo Giga</label>
                 <select
-                  name="et17"
-                  value={form.et17}
+                  name="dispositivoGiga"
+                  value={form.dispositivoGiga}
                   onChange={handleChange}
                   required
                 >
@@ -89,10 +87,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>ET-21 Etiqueta Compulsória</label>
+                <label>Placa de Cobre</label>
                 <select
-                  name="et21"
-                  value={form.et21}
+                  name="dispositivoPlaca"
+                  value={form.dispositivoPlaca}
                   onChange={handleChange}
                   required
                 >
@@ -102,10 +100,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Acessórios Conferidos</label>
+                <label>Parâmetros</label>
                 <select
-                  name="acessorios"
-                  value={form.acessorios}
+                  name="parametrosFuga"
+                  value={form.parametrosFuga}
                   onChange={handleChange}
                   required
                 >
@@ -115,10 +113,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Colocar Rabichos</label>
+                <label>Auto-calibração</label>
                 <select
-                  name="rabichos"
-                  value={form.rabichos}
+                  name="autoCalibracao"
+                  value={form.autoCalibracao}
                   onChange={handleChange}
                   required
                 >
@@ -128,10 +126,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Verificar Estado Geral</label>
+                <label>Pré Teste 1</label>
                 <select
-                  name="estado"
-                  value={form.estado}
+                  name="testPassed"
+                  value={form.testPassed}
                   onChange={handleChange}
                   required
                 >
@@ -141,10 +139,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Incluir Certificado de Calibração</label>
+                <label>Imprimir Pré Teste 1</label>
                 <select
-                  name="certificado"
-                  value={form.certificado}
+                  name="imprimir1"
+                  value={form.imprimir1}
                   onChange={handleChange}
                   required
                 >
@@ -154,10 +152,10 @@ function ModalChecklist({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>ET-18 Etiqueta de Lacre</label>
+                <label>Tensão Pilha</label>
                 <select
-                  name="et18"
-                  value={form.et18}
+                  name="tensaoGiga"
+                  value={form.tensaoGiga}
                   onChange={handleChange}
                   required
                 >
@@ -165,15 +163,33 @@ function ModalChecklist({ rhp, onClose, token }) {
                   <option value="REPROVADO">Reprovado</option>
                 </select>
               </div>
-              
+
               <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                <label>Pré Teste 2</label>
+                <select
+                  name="testFailed"
+                  value={form.testFailed}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
+
+              <div className="form-field">
+                <label>Imprimir Pré Teste 2</label>
+                <select
+                  name="imprimir2"
+                  value={form.imprimir2}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+             
             </div>
           </div>
 
@@ -188,4 +204,4 @@ function ModalChecklist({ rhp, onClose, token }) {
   )
 }
 
-export default ModalChecklist
+export default ModalTestesIniciais

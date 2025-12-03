@@ -5,7 +5,10 @@ import ModalCriar from '../components/ModalCriar'
 import ModalAcompanhantes from '../components/ModalAcompanhantes'
 import ModalRastreabilidade from '../components/ModalRastreabilidade'
 import ModalMontagem from '../components/ModalMontagem'
-import ModalTestesIniciais from '../components/ModalTestesIniciais'
+import ModalTestesIniciaisFuga from '../components/ModalTestesIniciaisFuga'
+import ModalTestesIniciaisAuto from '../components/ModalTestesIniciaisAuto'
+import ModalTestesIniciaisHIPOT from '../components/ModalTestesIniciaisHIPOT'
+import ModalTestesIniciaisRigidez from '../components/ModalTestesIniciaisRigidez'
 import ModalComunicacao from '../components/ModalComunicacao'
 import ModalBurnIn from '../components/ModalBurnIn'
 import ModalTestesFinais from '../components/ModalTestesFinais'
@@ -78,8 +81,14 @@ function RHP() {
         return <ModalRastreabilidade {...props} />
       case 'MONTAGEM':
         return <ModalMontagem {...props} />
-      case 'TESTES_INICIAIS':
-        return <ModalTestesIniciais {...props} />
+      case 'HIPOT':
+        return <ModalTestesIniciaisHIPOT {...props} />
+      case 'AUTO':
+        return <ModalTestesIniciaisAuto {...props} />
+      case 'FUGA':
+        return <ModalTestesIniciaisFuga {...props} />
+      case 'RIGIDEZ':
+        return <ModalTestesIniciaisRigidez {...props} />
       case 'COMUNICACAO':
         return <ModalComunicacao {...props} />
       case 'BURN_IN':

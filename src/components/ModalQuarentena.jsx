@@ -4,12 +4,12 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalQuarentena({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    responsavel: '',
-    motivo: '',
-    dataEntrada: '',
-    dataSaida: '',
-    acao: '',
-    observacoes: ''
+    serie: '',
+    et04: '',
+    et17: '',
+    eletro: '',
+    certificado: '',
+    itens: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -48,7 +48,7 @@ function ModalQuarentena({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Quarentena - RHP #{rhp.id}</h2>
+          <h2>Quarentena - Eletro System</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
@@ -57,10 +57,10 @@ function ModalQuarentena({ rhp, onClose, token }) {
             <div className="modal-form">
               
               <div className="form-field">
-                <label>Presença da Rotulagem</label>
+                <label>Presença do Nº de Série</label>
                 <select
-                  name="rotulagem"
-                  value={form.rotulagem}
+                  name="serie"
+                  value={form.serie}
                   onChange={handleChange}
                   required
                 >
@@ -70,7 +70,20 @@ function ModalQuarentena({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>ET-17 Etiqueta Lacre Validade</label>
+                <label>ET-04 Colar Etiqueta Produto Aprovado</label>
+                <select
+                  name="et04"
+                  value={form.et04}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>ET-17 Verificar Presença da Etiqueta</label>
                 <select
                   name="et17"
                   value={form.et17}
@@ -83,10 +96,10 @@ function ModalQuarentena({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>ET-21 Etiqueta Compulsória</label>
+                <label>Verificar Presença do Eletro System</label>
                 <select
-                  name="et21"
-                  value={form.et21}
+                  name="eletro"
+                  value={form.eletro}
                   onChange={handleChange}
                   required
                 >
@@ -96,10 +109,10 @@ function ModalQuarentena({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Acessórios Conferidos</label>
+                <label>Certificado de Calibração</label>
                 <select
-                  name="acessorios"
-                  value={form.acessorios}
+                  name="certificado"
+                  value={form.certificado}
                   onChange={handleChange}
                   required
                 >
@@ -109,23 +122,10 @@ function ModalQuarentena({ rhp, onClose, token }) {
               </div>
 
               <div className="form-field">
-                <label>Colocar Rabichos</label>
+                <label>Verificar Presença de Itens</label>
                 <select
-                  name="rabichos"
-                  value={form.rabichos}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="APROVADO">Aprovado</option>
-                  <option value="REPROVADO">Reprovado</option>
-                </select>
-              </div>
-
-              <div className="form-field">
-                <label>Verificar Estado Geral</label>
-                <select
-                  name="estado"
-                  value={form.estado}
+                  name="itens"
+                  value={form.itens}
                   onChange={handleChange}
                   required
                 >

@@ -47,7 +47,7 @@ function ModalCriar({ onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Criar RHP</h2>
+          <h2>Criar RHP Eletro System</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         

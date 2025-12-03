@@ -4,11 +4,9 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesIniciais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    tecnico: '',
-    resultado: 'APROVADO',
-    tensao: '',
-    corrente: '',
-    observacoes: ''
+    msgTestPassed: '',
+    imprimir: '',
+    conformidade: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -22,7 +20,7 @@ function ModalTestesIniciais({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais`, {
+      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/corrente-fuga`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -47,29 +45,19 @@ function ModalTestesIniciais({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Testes Iniciais - RHP #{rhp.id}</h2>
+          <h2>2.4 - Testes Iniciais - Ensaio de Corrente</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+              
               <div className="form-field">
-                <label>Técnico</label>
-                <input
-                  type="text"
-                  name="tecnico"
-                  value={form.tecnico}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Resultado</label>
+                <label>Verificação da Mensagem</label>
                 <select
-                  name="resultado"
-                  value={form.resultado}
+                  name="resumsgTestPassedltado"
+                  value={form.msgTestPassed}
                   onChange={handleChange}
                   required
                 >
@@ -78,38 +66,32 @@ function ModalTestesIniciais({ rhp, onClose, token }) {
                 </select>
               </div>
 
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Tensão (V)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="tensao"
-                    value={form.tensao}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label>Corrente (A)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="corrente"
-                    value={form.corrente}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="form-field">
+                <label>Imprimir Laudo</label>
+                <select
+                  name="imprimir"
+                  value={form.imprimir}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                <label>Conformidade Laudo</label>
+                <select
+                  name="conformidade"
+                  value={form.conformidade}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
+              
             </div>
           </div>
 

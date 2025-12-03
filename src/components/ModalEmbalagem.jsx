@@ -4,11 +4,10 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalEmbalagem({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    operador: '',
-    tipoEmbalagem: '',
-    quantidade: '',
-    pesoFinal: '',
-    observacoes: ''
+    bolha: '',
+    fita: '',
+    et20: '',
+    rt07: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -47,72 +46,66 @@ function ModalEmbalagem({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Embalagem - RHP #{rhp.id}</h2>
+          <h2>Embalagem - Eletro System</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+              
               <div className="form-field">
-                <label>Operador</label>
-                <input
-                  type="text"
-                  name="operador"
-                  value={form.operador}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Tipo de Embalagem</label>
+                <label>Colocar Saco Bolha</label>
                 <select
-                  name="tipoEmbalagem"
-                  value={form.tipoEmbalagem}
+                  name="bolha"
+                  value={form.bolha}
                   onChange={handleChange}
                   required
                 >
-                  <option value="">Selecione...</option>
-                  <option value="CAIXA">Caixa</option>
-                  <option value="SACOLA">Sacola</option>
-                  <option value="PALLET">Pallet</option>
-                  <option value="OUTRO">Outro</option>
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
                 </select>
               </div>
 
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Quantidade</label>
-                  <input
-                    type="number"
-                    name="quantidade"
-                    value={form.quantidade}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label>Peso Final (kg)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="pesoFinal"
-                    value={form.pesoFinal}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="form-field">
+                <label>Fechar com Fita de Embalagem</label>
+                <select
+                  name="fita"
+                  value={form.fita}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                <label>Fixar ET-20 na Caixa</label>
+                <select
+                  name="et20"
+                  value={form.et20}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
+
+              <div className="form-field">
+                <label>Fixar Rotulagem RT-07</label>
+                <select
+                  name="rt07"
+                  value={form.rt07}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+              
             </div>
           </div>
 

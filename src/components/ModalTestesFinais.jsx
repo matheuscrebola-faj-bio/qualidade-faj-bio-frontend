@@ -47,7 +47,7 @@ function ModalTestesFinais({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Testes Finais - RHP #{rhp.id}</h2>
+          <h2>Testes Finais - Eletro System</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
         
