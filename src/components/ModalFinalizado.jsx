@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8080'
+const API_BASE = 'http://localhost:50000'
 
 function ModalFinalizado({ rhp, onClose, token }) {
   const [form, setForm] = useState({
@@ -21,10 +21,10 @@ function ModalFinalizado({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/finalizado`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'token': `${token}`
         },
         body: JSON.stringify(form)
       })

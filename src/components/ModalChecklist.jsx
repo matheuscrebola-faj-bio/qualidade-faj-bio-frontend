@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8080'
+const API_BASE = 'http://localhost:50000'
 
 function ModalChecklist({ rhp, onClose, token }) {
   const [form, setForm] = useState({
@@ -30,7 +30,7 @@ function ModalChecklist({ rhp, onClose, token }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'token': `${token}`
         },
         body: JSON.stringify(form)
       })

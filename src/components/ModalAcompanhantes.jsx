@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8080'
+const API_BASE = 'http://localhost:50000'
 
 function ModalAcompanhantes({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    responsavel: '',
-    observacoes: ''
+    manualOp: '',
+    manualSoft: '',
+    manualEletro: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -20,10 +21,10 @@ function ModalAcompanhantes({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/acompanhantes`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'token': `${token}`
         },
         body: JSON.stringify(form)
       })
@@ -52,21 +53,28 @@ function ModalAcompanhantes({ rhp, onClose, token }) {
           <div className="modal-body">
             <div className="modal-form">
               <div className="form-field">
-                <label>Responsável</label>
+                <label>Manual Operações</label>
                 <input
-                  type="text"
-                  name="responsavel"
-                  value={form.responsavel}
+                  name="manualOp"
+                  value={form.manualOp}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
               <div className="form-field">
-                <label>Observações</label>
+                <label>Manual Software</label>
                 <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                  name="manualSoft"
+                  value={form.manualSoft}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-field">
+                <label>Guia Rápido Eletro</label>
+                <textarea
+                  name="manualEletro"
+                  value={form.manualEletro}
                   onChange={handleChange}
                 />
               </div>

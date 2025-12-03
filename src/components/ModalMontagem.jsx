@@ -1,13 +1,11 @@
 import { useState } from 'react'
 
-const API_BASE = 'http://localhost:8080'
+const API_BASE = 'http://localhost:50000'
 
 function ModalMontagem({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    operador: '',
-    dataInicio: '',
-    dataFim: '',
-    observacoes: ''
+    dtMont: '',
+    dtGrav: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -22,10 +20,10 @@ function ModalMontagem({ rhp, onClose, token }) {
 
     try {
       const response = await fetch(`${API_BASE}/rhp/${rhp.id}/montagem`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'token': `${token}`
         },
         body: JSON.stringify(form)
       })
@@ -53,47 +51,28 @@ function ModalMontagem({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
-              <div className="form-field">
-                <label>Operador</label>
-                <input
-                  type="text"
-                  name="operador"
-                  value={form.operador}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
 
               <div className="form-row">
                 <div className="form-field">
-                  <label>Data Início</label>
+                  <label>Data Montagem</label>
                   <input
                     type="datetime-local"
-                    name="dataInicio"
-                    value={form.dataInicio}
+                    name="dtMont"
+                    value={form.dtMont}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div className="form-field">
-                  <label>Data Fim</label>
+                  <label>Data Gravação</label>
                   <input
                     type="datetime-local"
-                    name="dataFim"
-                    value={form.dataFim}
+                    name="dtGrav"
+                    value={form.dtGrav}
                     onChange={handleChange}
                   />
                 </div>
-              </div>
-
-              <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
               </div>
             </div>
           </div>
