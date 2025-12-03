@@ -4,12 +4,9 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalBurnIn({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    tecnico: '',
-    temperaturaInicial: '',
-    temperaturaFinal: '',
-    duracao: '',
-    resultado: 'APROVADO',
-    observacoes: ''
+    dtInicio: '',
+    dtFim: '',
+    temperatura: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -56,75 +53,35 @@ function ModalBurnIn({ rhp, onClose, token }) {
           <div className="modal-body">
             <div className="modal-form">
               <div className="form-field">
-                <label>Técnico</label>
-                <input
-                  type="text"
-                  name="tecnico"
-                  value={form.tecnico}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Temp. Inicial (°C)</label>
+                  <label>Data Início</label>
                   <input
-                    type="number"
-                    step="0.1"
-                    name="temperaturaInicial"
-                    value={form.temperaturaInicial}
+                    type="datetime-local"
+                    name="dtInicio"
+                    value={form.dtInicio}
                     onChange={handleChange}
                     required
                   />
                 </div>
-
-                <div className="form-field">
-                  <label>Temp. Final (°C)</label>
+              <div className="form-field">
+                  <label>Data Fim</label>
                   <input
-                    type="number"
-                    step="0.1"
-                    name="temperaturaFinal"
-                    value={form.temperaturaFinal}
+                    type="datetime-local"
+                    name="dtMont"
+                    value={form.dtMont}
                     onChange={handleChange}
                     required
                   />
                 </div>
-              </div>
-
-              <div className="form-field">
-                <label>Duração (horas)</label>
-                <input
-                  type="number"
-                  step="0.5"
-                  name="duracao"
-                  value={form.duracao}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Resultado</label>
-                <select
-                  name="resultado"
-                  value={form.resultado}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="APROVADO">Aprovado</option>
-                  <option value="REPROVADO">Reprovado</option>
-                </select>
-              </div>
-
-              <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
-              </div>
+                <div className="form-field">
+                  <label>Data Montagem</label>
+                  <input
+                    type="text"
+                    name="temperatura"
+                    value={form.temperatura}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
             </div>
           </div>
 

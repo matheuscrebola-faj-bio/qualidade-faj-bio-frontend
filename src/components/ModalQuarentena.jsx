@@ -55,69 +55,85 @@ function ModalQuarentena({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+              
               <div className="form-field">
-                <label>Responsável</label>
-                <input
-                  type="text"
-                  name="responsavel"
-                  value={form.responsavel}
+                <label>Presença da Rotulagem</label>
+                <select
+                  name="rotulagem"
+                  value={form.rotulagem}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Motivo</label>
-                <input
-                  type="text"
-                  name="motivo"
-                  value={form.motivo}
+                <label>ET-17 Etiqueta Lacre Validade</label>
+                <select
+                  name="et17"
+                  value={form.et17}
                   onChange={handleChange}
                   required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Data Entrada</label>
-                  <input
-                    type="date"
-                    name="dataEntrada"
-                    value={form.dataEntrada}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label>Data Saída</label>
-                  <input
-                    type="date"
-                    name="dataSaida"
-                    value={form.dataSaida}
-                    onChange={handleChange}
-                  />
-                </div>
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Ação Corretiva</label>
-                <input
-                  type="text"
-                  name="acao"
-                  value={form.acao}
+                <label>ET-21 Etiqueta Compulsória</label>
+                <select
+                  name="et21"
+                  value={form.et21}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                <label>Acessórios Conferidos</label>
+                <select
+                  name="acessorios"
+                  value={form.acessorios}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
+
+              <div className="form-field">
+                <label>Colocar Rabichos</label>
+                <select
+                  name="rabichos"
+                  value={form.rabichos}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>Verificar Estado Geral</label>
+                <select
+                  name="estado"
+                  value={form.estado}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
             </div>
           </div>
 

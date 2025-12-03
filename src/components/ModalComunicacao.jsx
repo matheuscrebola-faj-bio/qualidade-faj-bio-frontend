@@ -4,10 +4,7 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalComunicacao({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    tecnico: '',
-    tipoComunicacao: '',
-    resultado: 'APROVADO',
-    observacoes: ''
+    formas: 'APROVADO',
   })
   const [loading, setLoading] = useState(false)
 
@@ -53,53 +50,18 @@ function ModalComunicacao({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
-              <div className="form-field">
-                <label>Técnico</label>
-                <input
-                  type="text"
-                  name="tecnico"
-                  value={form.tecnico}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Tipo de Comunicação</label>
-                <select
-                  name="tipoComunicacao"
-                  value={form.tipoComunicacao}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Selecione...</option>
-                  <option value="WIFI">WiFi</option>
-                  <option value="BLUETOOTH">Bluetooth</option>
-                  <option value="USB">USB</option>
-                  <option value="SERIAL">Serial</option>
-                </select>
-              </div>
 
               <div className="form-field">
                 <label>Resultado</label>
                 <select
-                  name="resultado"
-                  value={form.resultado}
+                  name="formas"
+                  value={form.formas}
                   onChange={handleChange}
                   required
                 >
                   <option value="APROVADO">Aprovado</option>
                   <option value="REPROVADO">Reprovado</option>
                 </select>
-              </div>
-
-              <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
               </div>
             </div>
           </div>

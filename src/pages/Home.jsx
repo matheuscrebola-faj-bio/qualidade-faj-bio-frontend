@@ -34,7 +34,7 @@ function Home() {
           <div className="form-card" onClick={() => navigate('/rhp')}>
             <div className="form-card-icon">📋</div>
             <div className="form-card-info">
-              <h3>RHP</h3>
+              <h3>EletroSystem</h3>
               <p>Registro de Histórico de Produto</p>
             </div>
           </div>

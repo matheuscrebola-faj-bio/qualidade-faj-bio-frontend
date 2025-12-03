@@ -4,12 +4,11 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesFinais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    tecnico: '',
-    resultado: 'APROVADO',
-    tensaoSaida: '',
-    correnteSaida: '',
-    potencia: '',
-    observacoes: ''
+    imprimir: '',
+    verificacao: '',
+    fc: '',
+    rr: '',
+    cal: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -55,22 +54,12 @@ function ModalTestesFinais({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
-              <div className="form-field">
-                <label>Técnico</label>
-                <input
-                  type="text"
-                  name="tecnico"
-                  value={form.tecnico}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
 
               <div className="form-field">
-                <label>Resultado</label>
+                <label>Imprimir Exame</label>
                 <select
-                  name="resultado"
-                  value={form.resultado}
+                  name="imprimir"
+                  value={form.imprimir}
                   onChange={handleChange}
                   required
                 >
@@ -79,49 +68,58 @@ function ModalTestesFinais({ rhp, onClose, token }) {
                 </select>
               </div>
 
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Tensão Saída (V)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="tensaoSaida"
-                    value={form.tensaoSaida}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label>Corrente Saída (A)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    name="correnteSaida"
-                    value={form.correnteSaida}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="form-field">
+                <label>Verificar forma de Onda</label>
+                <select
+                  name="verificacao"
+                  value={form.verificacao}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Potência (W)</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  name="potencia"
-                  value={form.potencia}
+                <label>Verificar FC</label>
+                <select
+                  name="fc"
+                  value={form.fc}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
+                <label>Verificar RR</label>
+                <select
+                  name="rr"
+                  value={form.rr}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
+
+              <div className="form-field">
+                <label>Verificar CAL</label>
+                <select
+                  name="cal"
+                  value={form.cal}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
             </div>
           </div>
 

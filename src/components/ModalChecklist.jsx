@@ -4,11 +4,14 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalChecklist({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    inspetor: '',
-    visualOk: false,
-    etiquetaOk: false,
-    cabosOk: false,
-    acessoriosOk: false,
+    rotulagem: '',
+    et17: '',
+    et21: '',
+    acessorios: '',
+    rabichos: '',
+    estado: '',
+    certificado: '',
+    et18: '',
     observacoes: ''
   })
   const [loading, setLoading] = useState(false)
@@ -58,65 +61,111 @@ function ModalChecklist({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
+
               <div className="form-field">
-                <label>Inspetor</label>
-                <input
-                  type="text"
-                  name="inspetor"
-                  value={form.inspetor}
+                <label>Presença da Rotulagem</label>
+                <select
+                  name="rotulagem"
+                  value={form.rotulagem}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input
-                    type="checkbox"
-                    name="visualOk"
-                    checked={form.visualOk}
-                    onChange={handleChange}
-                  />
-                  Inspeção Visual OK
-                </label>
+                <label>ET-17 Etiqueta Lacre Validade</label>
+                <select
+                  name="et17"
+                  value={form.et17}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input
-                    type="checkbox"
-                    name="etiquetaOk"
-                    checked={form.etiquetaOk}
-                    onChange={handleChange}
-                  />
-                  Etiqueta OK
-                </label>
+                <label>ET-21 Etiqueta Compulsória</label>
+                <select
+                  name="et21"
+                  value={form.et21}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input
-                    type="checkbox"
-                    name="cabosOk"
-                    checked={form.cabosOk}
-                    onChange={handleChange}
-                  />
-                  Cabos OK
-                </label>
+                <label>Acessórios Conferidos</label>
+                <select
+                  name="acessorios"
+                  value={form.acessorios}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
               <div className="form-field">
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input
-                    type="checkbox"
-                    name="acessoriosOk"
-                    checked={form.acessoriosOk}
-                    onChange={handleChange}
-                  />
-                  Acessórios OK
-                </label>
+                <label>Colocar Rabichos</label>
+                <select
+                  name="rabichos"
+                  value={form.rabichos}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
               </div>
 
+              <div className="form-field">
+                <label>Verificar Estado Geral</label>
+                <select
+                  name="estado"
+                  value={form.estado}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>Incluir Certificado de Calibração</label>
+                <select
+                  name="certificado"
+                  value={form.certificado}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>ET-18 Etiqueta de Lacre</label>
+                <select
+                  name="et18"
+                  value={form.et18}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="APROVADO">Aprovado</option>
+                  <option value="REPROVADO">Reprovado</option>
+                </select>
+              </div>
+              
               <div className="form-field">
                 <label>Observações</label>
                 <textarea
