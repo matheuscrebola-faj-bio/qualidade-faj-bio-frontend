@@ -3,41 +3,66 @@ import { useState } from 'react'
 const API_BASE = 'http://localhost:50000'
 
 function ModalFinalizado({ rhp, onClose, token }) {
-  const [form, setForm] = useState({
-    responsavel: '',
-    dataFinalizacao: '',
-    observacoes: ''
-  })
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(null)
+  const [showContent, setShowContent] = useState(false)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-
+  const gerarRHP = async () => {
+    setLoading('rhp')
     try {
-      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/finalizado`, {
-        method: 'PUT',
+      const response = await fetch(`${API_BASE}/eletro-system/gerar-rhp`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': `${token}`
+          'token': token
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify({ id: rhp.id })
       })
 
       if (response.ok) {
-        onClose()
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `RHP_${rhp.codigo}.pdf`
+        a.click()
+        window.URL.revokeObjectURL(url)
       } else {
-        alert('Erro ao salvar')
+        alert('Erro ao gerar RHP')
       }
     } catch (err) {
-      alert('Erro ao salvar')
+      alert('Erro ao gerar RHP')
     } finally {
-      setLoading(false)
+      setLoading(null)
+    }
+  }
+
+  const gerarCertificado = async () => {
+    setLoading('certificado')
+    try {
+      const response = await fetch(`${API_BASE}/eletro-system/gerar-certificado`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': token
+        },
+        body: JSON.stringify({ id: rhp.id })
+      })
+
+      if (response.ok) {
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `Certificado_${rhp.codigo}.pdf`
+        a.click()
+        window.URL.revokeObjectURL(url)
+      } else {
+        alert('Erro ao gerar Certificado')
+      }
+    } catch (err) {
+      alert('Erro ao gerar Certificado')
+    } finally {
+      setLoading(null)
     }
   }
 
@@ -45,52 +70,48 @@ function ModalFinalizado({ rhp, onClose, token }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Finalizado - Eletro System</h2>
+          <h2>Finalizado - {rhp.codigo}</h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
-        
-        <form onSubmit={handleSubmit}>
-          <div className="modal-body">
-            <div className="modal-form">
-              <div className="form-field">
-                <label>Responsável</label>
-                <input
-                  type="text"
-                  name="responsavel"
-                  value={form.responsavel}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
 
-              <div className="form-field">
-                <label>Data de Finalização</label>
-                <input
-                  type="datetime-local"
-                  name="dataFinalizacao"
-                  value={form.dataFinalizacao}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+        <div className="modal-body">
+          <div className="finalizado-buttons">
+            <button
+              className="btn-finalizado btn-content"
+              onClick={() => setShowContent(!showContent)}
+            >
+              {showContent ? 'Ocultar Conteúdo' : 'Ver Conteúdo'}
+            </button>
 
-              <div className="form-field">
-                <label>Observações Finais</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </div>
+            <button
+              className="btn-finalizado btn-rhp"
+              onClick={gerarRHP}
+              disabled={loading !== null}
+            >
+              {loading === 'rhp' ? 'Gerando...' : 'Gerar RHP (PDF)'}
+            </button>
 
-          <div className="modal-footer">
-            <button type="submit" className="btn-submit" disabled={loading}>
-              {loading ? 'Finalizando...' : 'Finalizar RHP'}
+            <button
+              className="btn-finalizado btn-certificado"
+              onClick={gerarCertificado}
+              disabled={loading !== null}
+            >
+              {loading === 'certificado' ? 'Gerando...' : 'Gerar Certificado (PDF)'}
             </button>
           </div>
-        </form>
+
+          {showContent && (
+            <div className="rhp-content">
+              <pre>{JSON.stringify(rhp, null, 2)}</pre>
+            </div>
+          )}
+        </div>
+
+        <div className="modal-footer">
+          <button className="btn-cancel" onClick={onClose}>
+            Fechar
+          </button>
+        </div>
       </div>
     </div>
   )

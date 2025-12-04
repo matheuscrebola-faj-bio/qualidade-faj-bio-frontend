@@ -543,3 +543,87 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Adicione ao seu CSS existente */
+
+.finalizado-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn-finalizado {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-finalizado:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-content {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-content:hover:not(:disabled) {
+  background: #4b5563;
+}
+
+.btn-rhp {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-rhp:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.btn-certificado {
+  background: #059669;
+  color: white;
+}
+
+.btn-certificado:hover:not(:disabled) {
+  background: #047857;
+}
+
+.rhp-content {
+  margin-top: 16px;
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.rhp-content pre {
+  color: #e5e7eb;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 12px;
+  background: #374151;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #4b5563;
+}
