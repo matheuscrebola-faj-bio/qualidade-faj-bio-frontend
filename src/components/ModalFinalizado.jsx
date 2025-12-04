@@ -23,7 +23,7 @@ function ModalFinalizado({ rhp, onClose, token }) {
         const url = window.URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `RHP_${rhp.codigo}.pdf`
+        a.download = `Eletro_System_${rhp.codigo}.pdf`
         a.click()
         window.URL.revokeObjectURL(url)
       } else {
