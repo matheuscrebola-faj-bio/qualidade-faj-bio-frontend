@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../App'
 
-const API_BASE = 'http://localhost:50000'
+const API_BASE = 'http://191.252.218.127:8080'
 
 function Login() {
   const [usuario, setUsuario] = useState('')

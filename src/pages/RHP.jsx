@@ -20,7 +20,7 @@ import ModalEstoque from '../components/ModalEstoque'
 import ModalFinalizado from '../components/ModalFinalizado'
 import ModalFechamentoOP from '../components/ModalFechamentoOP'
 
-const API_BASE = 'http://localhost:50000'
+const API_BASE = 'http://191.252.218.127:8080'
 
 function RHP() {
   const { token, funcao, canCreate } = useAuth()
