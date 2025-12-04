@@ -4,10 +4,10 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesIniciaisHIPOT({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    validadeHipot: '',
+    validadeHipot: 'APROVADO',
     dispositivoHipot: 'APROVADO',
-    parametros: '',
-    alarme: ''
+    parametros: 'APROVADO',
+    alarme: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -21,7 +21,7 @@ function ModalTestesIniciaisHIPOT({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/hipot`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/testes-iniciais/hipot`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

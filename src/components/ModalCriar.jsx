@@ -22,7 +22,7 @@ function ModalCriar({ onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp`, {
+      const response = await fetch(`${API_BASE}/eletro-system`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesIniciaisRigidez({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    msgPass: ''
+    msgPass: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -18,7 +18,7 @@ function ModalTestesIniciaisRigidez({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/rigidez-dieletrica`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/testes-iniciais/rigidez-dieletrica`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

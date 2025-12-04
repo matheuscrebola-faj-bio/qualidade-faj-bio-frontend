@@ -21,7 +21,7 @@ function ModalRastreabilidade({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/rastreabilidade`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/rastreabilidade`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -4,12 +4,12 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalQuarentena({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    serie: '',
-    et04: '',
-    et17: '',
-    eletro: '',
-    certificado: '',
-    itens: ''
+    serie: 'APROVADO',
+    et04: 'APROVADO',
+    et17: 'APROVADO',
+    eletro: 'APROVADO',
+    certificado: 'APROVADO',
+    itens: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -23,7 +23,7 @@ function ModalQuarentena({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/quarentena`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/quarentena`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

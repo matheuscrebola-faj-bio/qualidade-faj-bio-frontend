@@ -4,10 +4,10 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalEmbalagem({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    bolha: '',
-    fita: '',
-    et20: '',
-    rt07: ''
+    bolha: 'APROVADO',
+    fita: 'APROVADO',
+    et20: 'APROVADO',
+    rt07: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -21,7 +21,7 @@ function ModalEmbalagem({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/embalagem`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/embalagem`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

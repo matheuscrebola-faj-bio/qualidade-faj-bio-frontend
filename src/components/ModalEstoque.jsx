@@ -4,11 +4,7 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalEstoque({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    responsavel: '',
-    localizacao: '',
-    prateleira: '',
-    quantidade: '',
-    observacoes: ''
+    quantidade: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -22,7 +18,7 @@ function ModalEstoque({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/estoque`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/estoque`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -54,60 +50,19 @@ function ModalEstoque({ rhp, onClose, token }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="modal-form">
-              <div className="form-field">
-                <label>Responsável</label>
-                <input
-                  type="text"
-                  name="responsavel"
-                  value={form.responsavel}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Localização</label>
-                  <input
-                    type="text"
-                    name="localizacao"
-                    value={form.localizacao}
-                    onChange={handleChange}
-                    placeholder="Ex: A1, B2..."
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label>Prateleira</label>
-                  <input
-                    type="text"
-                    name="prateleira"
-                    value={form.prateleira}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
+              
               <div className="form-field">
                 <label>Quantidade</label>
                 <input
                   type="number"
                   name="quantidade"
+                  min="1"
                   value={form.quantidade}
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="form-field">
-                <label>Observações</label>
-                <textarea
-                  name="observacoes"
-                  value={form.observacoes}
-                  onChange={handleChange}
-                />
-              </div>
             </div>
           </div>
 

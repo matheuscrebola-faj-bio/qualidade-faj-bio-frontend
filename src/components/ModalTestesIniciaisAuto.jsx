@@ -4,16 +4,16 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesIniciaisAuto({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    validadeFuga: '',
-    dispositivoGiga: '',
-    dispositivoPlaca: '',
-    parametrosFuga: '',
-    autoCalibracao: '',
-    testPassed: '',
-    imprimir1: '',
-    tensaoGiga: '',
-    testFailed: '',
-    imprimir2: ''
+    validadeFuga: 'APROVADO',
+    dispositivoGiga: 'APROVADO',
+    dispositivoPlaca: 'APROVADO',
+    parametrosFuga: 'APROVADO',
+    autoCalibracao: 'APROVADO',
+    testPassed: 'APROVADO',
+    imprimir1: 'APROVADO',
+    tensaoGiga: 'APROVADO',
+    testFailed: 'APROVADO',
+    imprimir2: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -27,7 +27,7 @@ function ModalTestesIniciaisAuto({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/corrente-fuga-auto`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/testes-iniciais/corrente-fuga-auto`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

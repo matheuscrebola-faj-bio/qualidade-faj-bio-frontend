@@ -18,6 +18,7 @@ import ModalEmbalagem from '../components/ModalEmbalagem'
 import ModalInspecao from '../components/ModalInspecao'
 import ModalEstoque from '../components/ModalEstoque'
 import ModalFinalizado from '../components/ModalFinalizado'
+import ModalFechamentoOP from '../components/ModalFechamentoOP'
 
 const API_BASE = 'http://localhost:50000'
 
@@ -32,7 +33,7 @@ function RHP() {
 
   const fetchRhps = async () => {
     try {
-      const response = await fetch(`${API_BASE}/rhp/funcao`, {
+      const response = await fetch(`${API_BASE}/eletro-system/funcao`, {
         headers: { 'token': `${token}` }
       })
       if (response.ok) {
@@ -103,6 +104,8 @@ function RHP() {
         return <ModalEmbalagem {...props} />
       case 'INSPECAO':
         return <ModalInspecao {...props} />
+      case 'FECHAMENTO_OP':
+        return <ModalFechamentoOP {...props} />
       case 'ESTOQUE':
         return <ModalEstoque {...props} />
       case 'FINALIZADO':

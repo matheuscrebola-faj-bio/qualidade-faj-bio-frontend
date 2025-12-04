@@ -20,7 +20,7 @@ function ModalBurnIn({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/burn-in`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/burn-in`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function ModalBurnIn({ rhp, onClose, token }) {
               <div className="form-field">
                   <label>Data Início</label>
                   <input
-                    type="date-local"
+                    type="datetime-local"
                     name="dtInicio"
                     value={form.dtInicio}
                     onChange={handleChange}
@@ -66,9 +66,9 @@ function ModalBurnIn({ rhp, onClose, token }) {
               <div className="form-field">
                   <label>Data Fim</label>
                   <input
-                    type="date-local"
-                    name="dtMont"
-                    value={form.dtMont}
+                    type="datetime-local"
+                    name="dtFim"
+                    value={form.dtFim}
                     onChange={handleChange}
                     required
                   />

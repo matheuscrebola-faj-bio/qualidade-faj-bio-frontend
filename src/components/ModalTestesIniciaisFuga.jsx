@@ -4,9 +4,9 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesIniciaisFuga({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    msgTestPassed: '',
-    imprimir: '',
-    conformidade: ''
+    msgTestPassed: 'APROVADO',
+    imprimir: 'APROVADO',
+    conformidade: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,7 @@ function ModalTestesIniciaisFuga({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-iniciais/corrente-fuga`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/testes-iniciais/corrente-fuga`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

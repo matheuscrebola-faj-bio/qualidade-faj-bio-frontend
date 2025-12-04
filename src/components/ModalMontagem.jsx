@@ -19,7 +19,7 @@ function ModalMontagem({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/montagem`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/montagem`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

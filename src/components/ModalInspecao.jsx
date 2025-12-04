@@ -4,9 +4,9 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalInspecao({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    embalagem: '',
-    rotulagem: '',
-    et04: ''
+    embalagem: 'APROVADO',
+    rotulagem: 'APROVADO',
+    et04: 'APROVADO'
   })
   const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,7 @@ function ModalInspecao({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/inspecao`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/inspecao`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

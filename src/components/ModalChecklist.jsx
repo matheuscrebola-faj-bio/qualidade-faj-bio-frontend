@@ -4,14 +4,14 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalChecklist({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    rotulagem: '',
-    et17: '',
-    et21: '',
-    acessorios: '',
-    rabichos: '',
-    estado: '',
-    certificado: '',
-    et18: '',
+    rotulagem: 'APROVADO',
+    et17: 'APROVADO',
+    et21: 'APROVADO',
+    acessorios: 'APROVADO',
+    rabichos: 'APROVADO',
+    estado: 'APROVADO',
+    certificado: 'APROVADO',
+    et18: 'APROVADO',
     observacoes: ''
   })
   const [loading, setLoading] = useState(false)
@@ -29,7 +29,7 @@ function ModalChecklist({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/checklist`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/checklist`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -4,8 +4,8 @@ const API_BASE = 'http://localhost:50000'
 
 function ModalTestesFinais({ rhp, onClose, token }) {
   const [form, setForm] = useState({
-    imprimir: '',
-    verificacao: '',
+    imprimir: 'APROVADO',
+    verificacao: 'APROVADO',
     fc: '',
     rr: '',
     cal: ''
@@ -22,7 +22,7 @@ function ModalTestesFinais({ rhp, onClose, token }) {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/rhp/${rhp.id}/testes-finais`, {
+      const response = await fetch(`${API_BASE}/eletro-system/${rhp.id}/testes-finais`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -83,41 +83,35 @@ function ModalTestesFinais({ rhp, onClose, token }) {
 
               <div className="form-field">
                 <label>Verificar FC</label>
-                <select
+                <input
+                  type="number"
                   name="fc"
                   value={form.fc}
                   onChange={handleChange}
                   required
-                >
-                  <option value="APROVADO">Aprovado</option>
-                  <option value="REPROVADO">Reprovado</option>
-                </select>
+                />
               </div>
 
               <div className="form-field">
                 <label>Verificar RR</label>
-                <select
+                <input
+                  type="number"
                   name="rr"
                   value={form.rr}
                   onChange={handleChange}
                   required
-                >
-                  <option value="APROVADO">Aprovado</option>
-                  <option value="REPROVADO">Reprovado</option>
-                </select>
+                />
               </div>
 
               <div className="form-field">
                 <label>Verificar CAL</label>
-                <select
+                <input
+                  type="number"
                   name="cal"
                   value={form.cal}
                   onChange={handleChange}
                   required
-                >
-                  <option value="APROVADO">Aprovado</option>
-                  <option value="REPROVADO">Reprovado</option>
-                </select>
+                />
               </div>
 
             </div>
