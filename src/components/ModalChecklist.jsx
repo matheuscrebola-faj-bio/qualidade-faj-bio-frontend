@@ -12,7 +12,8 @@ function ModalChecklist({ rhp, onClose, token }) {
     estado: 'APROVADO',
     certificado: 'APROVADO',
     et18: 'APROVADO',
-    observacoes: ''
+    observacoes: '',
+    equipamentos: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -171,6 +172,15 @@ function ModalChecklist({ rhp, onClose, token }) {
                 <textarea
                   name="observacoes"
                   value={form.observacoes}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-field">
+                <label>Equipamentos Utilizados</label>
+                <textarea
+                  name="equipamentos"
+                  value={form.equipamentos}
                   onChange={handleChange}
                 />
               </div>
